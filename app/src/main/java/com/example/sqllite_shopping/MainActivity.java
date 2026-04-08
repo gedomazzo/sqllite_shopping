@@ -1,6 +1,11 @@
 package com.example.sqllite_shopping;
 
+import static com.example.sqllite_shopping.Percace.TABLE_NAME;
+
 import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -20,11 +26,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     EditText date;
     Button add;
 
+    int id = 0;
     String Sdes;
     String Smon;
     int Scat;
     String Sdat;
     String[] categories = {"select category:", "food", "clothes", "electronics", "drugs", "other"};
+
+    SQLiteDatabase db;
+    HelperDB hlp;
+
 
     public void merrage() {
         des = findViewById(R.id.des);
@@ -71,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Sdes = des.getText().toString();
         Smon = mon.getText().toString();
         Sdat = date.getText().toString();
+        id ++;
         if (Sdes.equals("") || Smon.equals("") || Sdat.equals("") || Scat == 0 || CheckDate(Sdat)){
             Log.i("error", "user is stupid");
             Log.i("error", Sdes);
@@ -91,15 +103,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             return;
             }
 
-        
 
+            hlp = new HelperDB(this);
+            db = hlp.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(Percace.DESCRIPTION, Sdes);
+            values.put(Percace.AMOUNT, Smon);
+            values.put(Percace.CATEGORY, categories[Scat]);
+            values.put(Percace.DATE, Sdat);
+            values.put(Percace.KEY_ID, id);
+
+            db.insert(Percace.TABLE_NAME, null, values);
+            db.close();
 
 
 
     }
 
 
-    public static boolean CheckDate(String date){
+    public static boolean CheckDate(@NonNull String date){
 
         String[] split = date.split("/");
 
@@ -135,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         return false;
     }
+
 
 
 }
