@@ -4,10 +4,12 @@ import static com.example.sqllite_shopping.Percace.TABLE_NAME;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -122,8 +124,34 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-    public static boolean CheckDate(@NonNull String date){
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        menu.add(1 , 1, 100, "Show");
+        menu.add(1, 1, 200, "Edit");
+        menu.add(1, 1, 300, "Credit");
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        String tit = item.getTitle().toString();
+
+        Intent shaw;
+
+        if (tit.equals("Show")) {
+            shaw = new Intent(this, Show.class);
+        } else if (tit.equals("Edit")) {
+            shaw = new Intent(this, Filter.class);
+        } else {
+            shaw = new Intent(this, Credits.class);
+        }
+        startActivity(shaw);
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    public static boolean CheckDate(@NonNull String date){
         String[] split = date.split("/");
 
         if ((Integer.parseInt(split[1]) > 12) || (Integer.parseInt(split[1]) == 0)){
