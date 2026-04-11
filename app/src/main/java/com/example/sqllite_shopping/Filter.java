@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -111,6 +112,18 @@ public class Filter extends AppCompatActivity implements AdapterView.OnItemSelec
         adt.notifyDataSetChanged();
 
         Log.i("SQL", "everything is fine, table filreted");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        menu.add(1 , 1, 100, "Back");
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
 
