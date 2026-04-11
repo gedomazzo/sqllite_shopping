@@ -3,6 +3,7 @@ package com.example.sqllite_shopping;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -108,6 +109,8 @@ public class Filter extends AppCompatActivity implements AdapterView.OnItemSelec
         cursor.close();
         db.close();
         adt.notifyDataSetChanged();
+
+        Log.i("SQL", "everything is fine, table filreted");
     }
 
 

@@ -81,11 +81,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Sdat = date.getText().toString();
         id ++;
         if (Sdes.equals("") || Smon.equals("") || Sdat.equals("") || Scat == 0 || CheckDate(Sdat)){
-            Log.i("error", "user is stupid");
-            Log.i("error", Sdes);
-            Log.i("error", Smon);
-            Log.i("error", Sdat);
-            Log.i("error", String.valueOf(Scat));
+            Log.i("SQL", "user is stupid, in the put is all wrong");
+            Log.i("SQL", Sdes);
+            Log.i("SQL", Smon);
+            Log.i("SQL", Sdat);
+            Log.i("SQL", String.valueOf(Scat));
+
+
+        Log.i("SQL", "everything is fine");
 
 
             AlertDialog.Builder err = new AlertDialog.Builder(this);
@@ -113,6 +116,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             db.insert(Percace.TABLE_NAME, null, values);
             db.close();
+            Log.i("SQL", "everything is fine, table created");
+
 
 
 

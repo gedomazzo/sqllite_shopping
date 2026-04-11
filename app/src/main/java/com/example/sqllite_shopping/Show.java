@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -59,6 +60,7 @@ public class Show extends AppCompatActivity implements AdapterView.OnItemClickLi
             tbl.add(tmp);
             crsr.moveToNext();
         }
+        Log.i("SQL", "everything is fine, table read");
         crsr.close();
         db.close();
 
@@ -88,6 +90,8 @@ public class Show extends AppCompatActivity implements AdapterView.OnItemClickLi
                 adp.notifyDataSetChanged();
             }
         });
+        Log.i("SQL", "everything is fine, item deleted");
+
 
         allert.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
