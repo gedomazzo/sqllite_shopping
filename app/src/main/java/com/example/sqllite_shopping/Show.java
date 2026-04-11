@@ -21,19 +21,30 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
+/** 
+* @author        benjamin rogachevsky 
+* @version       1.0
+* @since           1/7/26
+* Activity class that displays all shopping items from the database in a list.
+*/
 public class Show extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
 
-    SQLiteDatabase db;
-    HelperDB hlp;
-    Cursor crsr;
+    private SQLiteDatabase db;
+    private HelperDB hlp;
+    private Cursor crsr;
 
-    ListView dshow;
-    ArrayList<String> tbl = new ArrayList<>();
-    ArrayAdapter<String> adp;
+    private ListView dshow;
+    private ArrayList<String> tbl = new ArrayList<>();
+    private ArrayAdapter<String> adp;
+    private AlertDialog.Builder allert;
 
-    AlertDialog.Builder allert;
-
+    /** 
+    * Initializes the activity, reads data from the database, and sets up the ListView.
+    * <p>
+    * 
+    * @param savedInstanceState
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +83,15 @@ public class Show extends AppCompatActivity implements AdapterView.OnItemClickLi
     }
 
 
+    /** 
+    * Handles item clicks in the ListView to show a deletion confirmation dialog.
+    * <p>
+    * 
+    * @param parent
+    * @param view
+    * @param pos
+    * @param id
+    */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int pos, long id){
         String tble = tbl.get(pos);
@@ -107,12 +127,26 @@ public class Show extends AppCompatActivity implements AdapterView.OnItemClickLi
     }
 
 
+    /** 
+    * Creates the options menu for the activity.
+    * <p>
+    * 
+    * @param menu
+    * @return boolean description true
+    */
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         menu.add(1 , 1, 100, "Back");
         return super.onCreateOptionsMenu(menu);
     }
 
+    /** 
+    * Handles selection of items from the options menu.
+    * <p>
+    * 
+    * @param item
+    * @return boolean description true
+    */
     @Override
     public boolean onOptionsItemSelected(android.view.MenuItem item) {
         finish();

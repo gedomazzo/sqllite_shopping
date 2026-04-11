@@ -17,25 +17,36 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+/** 
+* @author        benjamin rogachevsky 
+* @version       1.0
+* @since           4/11/26
+* Main Activity class for the shopping list application, handles item input and navigation.
+*/
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    EditText des;
-    EditText mon;
-    Spinner cat;
-    EditText date;
-    Button add;
+    private EditText des;
+    private EditText mon;
+    private Spinner cat;
+    private EditText date;
+    private Button add;
 
-    int id = 0;
-    String Sdes;
-    String Smon;
-    int Scat;
-    String Sdat;
-    String[] categories = {"select category:", "food", "clothes", "electronics", "drugs", "other"};
+    private int id = 0;
+    private String Sdes;
+    private String Smon;
+    private int Scat;
+    private String Sdat;
+    private final String[] categories = {"select category:", "food", "clothes", "electronics", "drugs", "other"};
 
-    SQLiteDatabase db;
-    HelperDB hlp;
+    private SQLiteDatabase db;
+    private HelperDB hlp;
 
 
+    /** 
+    * link xml objects to java objects
+    * <p>
+    * 
+    */
     public void merrage() {
         des = findViewById(R.id.des2);
         mon = findViewById(R.id.mon);
@@ -44,6 +55,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         add = findViewById(R.id.add);
     }
 
+    /** 
+    * onCreate method to initialize the activity
+    * <p>
+    * 
+    * @param savedInstanceState
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +81,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
+    /** 
+    * listener for the spinner
+    * <p>
+    * 
+    * @param parent
+    * @param view
+    * @param pos
+    * @param id
+    */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         Scat = pos;
@@ -71,10 +97,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
+    /** 
+    * listener for the spinner when nothing is selected
+    * <p>
+    * 
+    * @param parent
+    */
     public void onNothingSelected(AdapterView<?> parent) {
         Log.i("spinner", "nothing selected");
     }
 
+    /** 
+    * method to push data to the database
+    * <p>
+    * 
+    * @param view
+    */
     public void Push(View view) {
         Sdes = des.getText().toString();
         Smon = mon.getText().toString();
@@ -124,6 +162,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
+    /** 
+    * method to create the options menu
+    * <p>
+    * 
+    * @param menu
+    * @return description true
+    */
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         menu.add(1 , 1, 100, "Show");
@@ -132,6 +177,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return super.onCreateOptionsMenu(menu);
     }
 
+    /** 
+    * method to handle menu item selection
+    * <p>
+    * 
+    * @param item
+    * @return description true
+    */
     @Override
     public boolean onOptionsItemSelected(android.view.MenuItem item) {
         String tit = item.getTitle().toString();
@@ -151,6 +203,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
+    /** 
+    * method to check if the date is valid
+    * <p>
+    * 
+    * @param date
+    * @return description boolean
+    */
     public static boolean CheckDate(@NonNull String date){
         String[] split = date.split("/");
 

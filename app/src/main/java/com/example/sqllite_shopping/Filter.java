@@ -18,21 +18,34 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+/** 
+* @author        benjamin rogachevsky 
+* @version       1.0
+* @since          4/11/26
+* Activity class that handles filtering shopping items by category and description.
+*/
 public class Filter extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    EditText des2;
-    Spinner cat2;
-    Button fil;
-    ListView res;
+    private EditText des2;
+    private Spinner cat2;
+    private Button fil;
+    private ListView res;
     
-    HelperDB hlp;
-    SQLiteDatabase db;
-    ArrayList<String> tbl = new ArrayList<>();
-    ArrayAdapter<String> adt;
+    private HelperDB hlp;
+    private SQLiteDatabase db;
+    private ArrayList<String> tbl = new ArrayList<>();
+    private ArrayAdapter<String> adt;
 
-    String selectedCategory = "";
-    String[] categories = {"All Categories", "food", "clothes", "electronics", "drugs", "other"};
+    private String selectedCategory = "";
+    private final String[] categories = {"All Categories", "food", "clothes", "electronics", "drugs", "other"};
 
+    /** 
+    * Initializes the activity, sets up the UI components and adapters.
+    * <p>
+    * 
+    * @param savedInstanceState
+    * @return description void
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,24 +65,43 @@ public class Filter extends AppCompatActivity implements AdapterView.OnItemSelec
 
         adt = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tbl);
         res.setAdapter(adt);
-
-
-
-
-
     }
 
 
+    /** 
+    * Callback method for when a category is selected in the spinner.
+    * <p>
+    * 
+    * @param parent
+    * @param view
+    * @param position
+    * @param id
+    * @return description void
+    */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         selectedCategory = categories[position];
     }
 
+    /** 
+    * Callback method for when no item is selected in the spinner.
+    * <p>
+    * 
+    * @param parent
+    * @return description void
+    */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         selectedCategory = "";
     }
 
+    /** 
+    * Filters the database based on the user's input and updates the results list.
+    * <p>
+    * 
+    * @param v
+    * @return description void
+    */
     public void Filler(View v) {
         tbl.clear();
         db = hlp.getReadableDatabase();
@@ -114,12 +146,26 @@ public class Filter extends AppCompatActivity implements AdapterView.OnItemSelec
         Log.i("SQL", "everything is fine, table filreted");
     }
 
+    /** 
+    * Creates the options menu for the activity.
+    * <p>
+    * 
+    * @param menu
+    * @return description true
+    */
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         menu.add(1 , 1, 100, "Back");
         return super.onCreateOptionsMenu(menu);
     }
 
+    /** 
+    * Handles selection of items from the options menu.
+    * <p>
+    * 
+    * @param item
+    * @return description true
+    */
     @Override
     public boolean onOptionsItemSelected(android.view.MenuItem item) {
         finish();
