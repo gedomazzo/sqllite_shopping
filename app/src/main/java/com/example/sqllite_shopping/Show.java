@@ -63,7 +63,6 @@ public class Show extends AppCompatActivity implements AdapterView.OnItemClickLi
         db.close();
 
         adp = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tbl);
-
         dshow.setOnItemClickListener(this);
         dshow.setAdapter(adp);
     }

@@ -1,11 +1,8 @@
 package com.example.sqllite_shopping;
 
-import static com.example.sqllite_shopping.Percace.TABLE_NAME;
-
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,13 +37,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
     public void merrage() {
-        des = findViewById(R.id.des);
+        des = findViewById(R.id.des2);
         mon = findViewById(R.id.mon);
         cat = findViewById(R.id.cat);
         date = findViewById(R.id.date);
         add = findViewById(R.id.add);
-
-
     }
 
     @Override
@@ -127,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         menu.add(1 , 1, 100, "Show");
-        menu.add(1, 1, 200, "Edit");
+        menu.add(1, 1, 200, "Filter");
         menu.add(1, 1, 300, "Credit");
         return super.onCreateOptionsMenu(menu);
     }
@@ -140,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         if (tit.equals("Show")) {
             shaw = new Intent(this, Show.class);
-        } else if (tit.equals("Edit")) {
+        } else if (tit.equals("Filter")) {
             shaw = new Intent(this, Filter.class);
         } else {
             shaw = new Intent(this, Credits.class);

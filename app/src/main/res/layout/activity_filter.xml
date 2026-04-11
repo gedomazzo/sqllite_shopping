@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" >
+    tools:context=".Filter" >
 
     <Space
         android:layout_width="100dp"
@@ -20,7 +20,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:layout_height="80dp" />
 
         <EditText
             android:id="@+id/des2"
@@ -30,47 +30,26 @@
             android:hint="description"
             android:inputType="text" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="100dp" />
-
-        <EditText
-            android:id="@+id/mon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="amount"
-            android:inputType="number" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="100dp" />
-
         <Spinner
-            android:id="@+id/cat"
+            android:id="@+id/cat2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <Button
+            android:id="@+id/fil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="Filler"
+            android:text="Filter" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="100dp" />
 
-        <EditText
-            android:id="@+id/date"
+        <ListView
+            android:id="@+id/res"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Date: dd/mm/yy"
-            android:inputType="date" />
-
-        <Button
-            android:id="@+id/add"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="Push"
-            android:text="Add" />
-
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <Space
@@ -78,4 +57,3 @@
         android:layout_height="match_parent"
         android:layout_weight="1" />
 </LinearLayout>
-
