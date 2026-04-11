@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class Filter extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    EditText des2, mon2;
+    EditText des2;
     Spinner cat2;
     Button fil;
     ListView res;
@@ -40,7 +40,6 @@ public class Filter extends AppCompatActivity implements AdapterView.OnItemSelec
         hlp = new HelperDB(this);
 
         des2 = findViewById(R.id.des2);
-        mon2 = findViewById(R.id.mon2);
         cat2 = findViewById(R.id.cat2);
         fil = findViewById(R.id.fil);
         res = findViewById(R.id.res);
@@ -77,7 +76,6 @@ public class Filter extends AppCompatActivity implements AdapterView.OnItemSelec
         ArrayList<String> selectionArgs = new ArrayList<>();
 
         String descInput = des2.getText().toString().trim();
-        int monInput = Integer.parseInt(mon2.getText().toString().trim());
 
         if (!descInput.isEmpty()) {
             selection += Percace.DESCRIPTION + " LIKE ?";
